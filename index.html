@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>D1amond Strength Training — DST1</title>
+  <meta name="description" content="D1amond Strength Training — premium strength & lifestyle coaching" />
+
+  <!-- Google Fonts (replace or self-host in production) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1113; /* deep charcoal */
+      --card:#121416;
+      --muted:#9aa0a6;
+      --accent:#c9a34a; /* warm gold */
+      --white:#f7f7f7;
+      --maxw:1150px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,var(--bg),#0b0c0d);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .site{max-width:var(--maxw);margin:0 auto;padding:32px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:6px;background:linear-gradient(180deg,#111,#0b0b0b);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:var(--accent);border:1px solid rgba(255,255,255,0.03)}
+    nav{display:flex;gap:20px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a.active{color:var(--white)}
+    .btn{padding:10px 14px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);font-weight:700}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),#d4b76b);color:#000;border:none}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;margin-top:30px}
+    .hero-left h1{font-size:44px;margin:0 0 12px}
+    .hero-left p{color:var(--muted);margin:0 0 22px}
+    .cta-row{display:flex;gap:12px}
+
+    .hero-right{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+    .hero-image{width:100%;height:300px;border-radius:8px;background:#222;display:block;object-fit:cover}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:700;color:var(--muted);font-size:13px}
+
+    /* Sections */
+    section{margin:56px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 8px}
+    .muted{color:var(--muted)}
+
+    /* Programs */
+    .programs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .program{padding:18px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.03)}
+    .program h4{margin:0 0 8px}
+    .program p{color:var(--muted);margin:0 0 12px}
+
+    /* Contact */
+    form{display:grid;gap:12px}
+    input,textarea,select{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--white)}
+    textarea{min-height:120px;resize:vertical}
+
+    footer{padding:30px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:60}
+    .modal.open{display:flex}
+    .modal-inner{background:linear-gradient(180deg,#0b0c0d,#121416);padding:24px;border-radius:12px;max-width:780px;width:94%;border:1px solid rgba(255,255,255,0.04)}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .hero-right{order:2}
+      nav{display:none}
+      .mobile-toggle{display:inline-block}
+      .site{padding:18px}
+      .programs{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .programs{grid-template-columns:1fr}
+      .hero-left h1{font-size:28px}
+    }
+
+    /* mobile nav panel */
+    .mobile-panel{position:fixed;right:0;top:0;bottom:0;width:320px;background:#0b0c0d;padding:22px;transform:translateX(110%);transition:transform .28s ease;box-shadow:-20px 0 60px rgba(0,0,0,0.7);z-index:70}
+    .mobile-panel.open{transform:translateX(0)}
+    .mobile-panel a{display:block;padding:12px 0;color:var(--muted);text-decoration:none}
+
+    /* small helpers */
+    .text-right{text-align:right}
+    .muted-small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="brand">
+        <div class="logo">DST1</div>
+        <div>
+          <div style="font-weight:900;letter-spacing:1px">D1amond Strength</div>
+          <div class="muted-small">Performance • Strength • Lifestyle</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <button class="btn">Log in</button>
+        <button class="btn primary" id="bookTrial">Book Trial</button>
+        <button class="btn mobile-toggle" id="openMobile" style="display:none">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-left">
+          <span class="badge">By-Invite Only</span>
+          <h1>Precision coaching for high-performing lives</h1>
+          <p>Strength training, performance programming, and lifestyle design — built for professionals who demand measurable transformation.</p>
+          <div class="cta-row">
+            <button class="btn primary" id="heroBook">Book a Trial</button>
+            <a href="#programs" class="btn">View Programs</a>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:18px">
+            <div class="card" style="padding:12px;border-radius:8px">
+              <div style="font-weight:800">12+ weeks</div>
+              <div class="muted-small">Structured transformations</div>
+            </div>
+            <div class="card" style="padding:12px;border-radius:8px">
+              <div style="font-weight:800">Personalized</div>
+              <div class="muted-small">Coaching + accountability</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-right" aria-hidden="false">
+          <!-- Replace this image with hero photography: assets/hero.jpg -->
+          <img src="assets/hero.jpg" alt="DST1 coaching" class="hero-image" onerror="this.style.display='block'; this.style.background='#1a1a1a'">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+            <div>
+              <div style="font-weight:800">Elevated environment</div>
+              <div class="muted-small">Small cohorts · Private sessions</div>
+            </div>
+            <div class="muted-small">Trusted by professionals</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="grid-3">
+          <div class="card">
+            <h3>About DST1</h3>
+            <p class="muted">DST1 merges evidence-based strength training with behavior design and lifestyle optimisation to create enduring results. Our coaching is selective — we work with professionals committed to excellence.</p>
+          </div>
+          <div class="card">
+            <h3>Philosophy</h3>
+            <p class="muted">Quality over quantity. Precision over trend. We measure what matters — strength, resilience, and long-term performance.</p>
+          </div>
+          <div class="card">
+            <h3>What to expect</h3>
+            <p class="muted">A clear roadmap, weekly check-ins, progressive programming, and a lifestyle audit that supports recovery and performance.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="programs">
+        <h2 style="margin:0 0 18px">Coaching Programs</h2>
+        <div class="programs">
+          <article class="program" data-program="foundations">
+            <h4>Foundations — 12 weeks</h4>
+            <p>For professionals building a consistent, resilient base of strength and mobility.</p>
+            <div style="display:flex;gap:8px;justify-content:space-between;align-items:center">
+              <div class="muted-small">Small cohort · Weekly check-ins</div>
+              <div>
+                <button class="btn" data-action="details">Details</button>
+                <button class="btn primary" data-action="book">Apply</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="program" data-program="performance">
+            <h4>Performance — 24 weeks</h4>
+            <p>Advanced programming for measurable strength and athletic competence.</p>
+            <div style="display:flex;gap:8px;justify-content:space-between;align-items:center">
+              <div class="muted-small">1:1 coaching available</div>
+              <div>
+                <button class="btn" data-action="details">Details</button>
+                <button class="btn primary" data-action="book">Apply</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="program" data-program="lifestyle">
+            <h4>Lifestyle — Ongoing</h4>
+            <p>Ongoing support to align training, sleep, nutrition and stress management with performance goals.</p>
+            <div style="display:flex;gap:8px;justify-content:space-between;align-items:center">
+              <div class="muted-small">Custom plans · Quarterly review</div>
+              <div>
+                <button class="btn" data-action="details">Details</button>
+                <button class="btn primary" data-action="book">Apply</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div style="display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start">
+          <div>
+            <h2>Get in touch</h2>
+            <p class="muted">Apply for a trial, ask questions, or request a discovery call.</p>
+
+            <form id="contactForm" novalidate>
+              <input type="text" id="name" name="name" placeholder="Full name" required />
+              <input type="email" id="email" name="email" placeholder="Email" required />
+              <input type="tel" id="phone" name="phone" placeholder="Phone (optional)" />
+              <select id="interest" name="interest">
+                <option value="">Select interest</option>
+                <option value="foundations">Foundations</option>
+                <option value="performance">Performance</option>
+                <option value="lifestyle">Lifestyle</option>
+              </select>
+              <textarea id="message" name="message" placeholder="Tell us about your goals" required></textarea>
+
+              <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+                <div class="muted-small">We respond within 48 hours (business days)</div>
+                <div>
+                  <button type="submit" class="btn primary">Send</button>
+                </div>
+              </div>
+            </form>
+
+            <div id="formMessage" style="margin-top:12px;display:none"></div>
+          </div>
+
+          <aside class="card" aria-hidden="false">
+            <h3>Visit</h3>
+            <p class="muted">DST1 studio (by appointment) — replace this copy with real address.</p>
+            <h3 style="margin-top:14px">Membership</h3>
+            <p class="muted">Selective intake — applications reviewed weekly.</p>
+            <div style="margin-top:16px">
+              <button class="btn" id="learnMore">How we select</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="muted-small">© D1amond Strength Training — DST1</div>
+      <div class="muted-small">Designed for performance & luxury</div>
+    </footer>
+  </div>
+
+  <!-- Mobile nav panel -->
+  <div class="mobile-panel" id="mobilePanel" aria-hidden="true">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <div style="font-weight:900">DST1</div>
+      <button id="closeMobile" class="btn">Close</button>
+    </div>
+    <a href="#home" onclick="closeMobile()">Home</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#programs" onclick="closeMobile()">Programs</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-inner" id="modalInner">
+      <button class="btn" id="closeModal" style="float:right">Close</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Navigation mobile toggle
+    const openMobileBtn = document.getElementById('openMobile');
+    const mobilePanel = document.getElementById('mobilePanel');
+    const closeMobileBtn = document.getElementById('closeMobile');
+    function openMobile(){mobilePanel.classList.add('open');mobilePanel.setAttribute('aria-hidden','false')}
+    function closeMobile(){mobilePanel.classList.remove('open');mobilePanel.setAttribute('aria-hidden','true')}
+    if(openMobileBtn){openMobileBtn.addEventListener('click',openMobile)}
+    if(closeMobileBtn){closeMobileBtn.addEventListener('click',closeMobile)}
+
+    // Make mobile toggle visible if screen small
+    function checkMobile(){
+      const nav = document.querySelector('nav');
+      const toggle = document.querySelector('.mobile-toggle');
+      if(window.innerWidth <= 980){nav.style.display='none'; toggle.style.display='inline-block'} else {nav.style.display='flex'; toggle.style.display='none'; closeMobile()}
+    }
+    window.addEventListener('resize',checkMobile); checkMobile();
+
+    // Modal for program details
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const closeModal = document.getElementById('closeModal');
+    function openModal(html){modalContent.innerHTML = html; modal.classList.add('open'); modal.setAttribute('aria-hidden','false')}
+    function hideModal(){modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); modalContent.innerHTML=''}
+    closeModal.addEventListener('click',hideModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) hideModal(); })
+
+    document.querySelectorAll('[data-action="details"]').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const program = e.target.closest('.program').dataset.program;
+        let html='';
+        if(program==='foundations'){
+          html = `<h3>Foundations — 12 weeks</h3><p class="muted">A structured path to build consistent strength, mobility and recovery habits. 3 phased program with weekly coaching touchpoints and group check-ins.</p><ul><li>Initial assessment</li><li>Weekly programming</li><li>Monthly review</li></ul>`
+        } else if(program==='performance'){
+          html = `<h3>Performance — 24 weeks</h3><p class="muted">For clients seeking measurable increases in strength and athletic capacity. Includes 1:1 coaching options, advanced periodization and metrics tracking.</p>`
+        } else {
+          html = `<h3>Lifestyle — Ongoing</h3><p class="muted">Integration of sleep, nutrition, and stress tools to support training and life demands, with quarterly deep-dives and planning.</p>`
+        }
+        openModal(html);
+      })
+    })
+
+    // Booking / Apply buttons -> scroll to contact and prefill
+    function prefillAndScroll(interest){
+      document.getElementById('interest').value = interest || '';
+      document.getElementById('name').focus();
+      document.querySelector('#contact').scrollIntoView({behavior:'smooth'});
+    }
+    document.querySelectorAll('[data-action="book"]').forEach((b,i)=>{
+      b.addEventListener('click',(e)=>{const program = e.target.closest('.program').dataset.program; prefillAndScroll(program)})
+    })
+    document.getElementById('heroBook').addEventListener('click',()=>prefillAndScroll(''))
+    document.getElementById('bookTrial').addEventListener('click',()=>prefillAndScroll('foundations'))
+
+    // Basic form validation & fake submit (no backend)
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    form.addEventListener('submit',(e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name||!email||!message){
+        showFormMessage('Please fill your name, email and message.');
+        return;
+      }
+      if(!/^\S+@\S+\.\S+$/.test(email)) { showFormMessage('Please provide a valid email address.'); return; }
+
+      // Show success — in production this would be a fetch POST to your backend/CRM.
+      showFormMessage('Thanks! Your application has been received. We will review and respond within 48 business hours.', true);
+      form.reset();
+    })
+    function showFormMessage(text, success=false){formMessage.style.display='block'; formMessage.style.color = success ? '#c8d6b9' : '#f4b3b3'; formMessage.textContent = text; setTimeout(()=>{formMessage.style.display='none'},10000)}
+
+    // Accessibility: enable keyboard to close modal
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ hideModal(); closeMobile() } });
+
+    // Ensure images are placed — check for images with missing src and warn in console
+    document.querySelectorAll('img').forEach(img=>{ if(!img.getAttribute('src') || img.getAttribute('src').includes('assets/')){ img.addEventListener('error', ()=>console.warn('Image failed to load — replace placeholder src:', img)); } })
+
+    // Simple analytics stub (no external calls)
+    window._dst1 = window._dst1 || {events:[]};
+    function track(evt, data){ window._dst1.events.push({evt,ts:Date.now(),data}) }
+    document.querySelectorAll('.btn').forEach(b=> b.addEventListener('click', ()=>track('click',{label:b.textContent.trim()})));
+
+  </script>
+
+  <!-- Usage notes:
+       - Replace image placeholders in /assets/ (hero.jpg, program images, logos).
+       - Hook contact form to your backend (POST endpoint) or to Zapier/HubSpot.
+       - For production: self-host fonts, optimize images, and enable HTTPS on the server.
+       - This is a single-file prototype with full front-end interaction and client-side validation.
+  -->
+</body>
+</html>
